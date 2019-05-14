@@ -18,7 +18,7 @@ public class Client {
     private String firstName;
     private String secondName;
     private String firstSurName;
-    private String secndSurName;
+    private String secondSurName;
     private String adressPersonal;
     private String AddressCompany;
     private ArrayList<String> emails;
@@ -74,13 +74,15 @@ public class Client {
         this.firstSurName = firstSurName;
     }
 
-    public String getSecndSurName() {
-        return secndSurName;
+    public String getSecondSurName() {
+        return secondSurName;
     }
 
-    public void setSecndSurName(String secndSurName) {
-        this.secndSurName = secndSurName;
+    public void setSecondSurName(String secondSurName) {
+        this.secondSurName = secondSurName;
     }
+
+    
 
     public String getAdressPersonal() {
         return adressPersonal;
