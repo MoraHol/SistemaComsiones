@@ -43,9 +43,8 @@ public class ProductDaoImpl extends ConnectionSQL implements IProductDao {
                 product.setName(rs.getString(t++));
                 product.setDescription(rs.getString(t++));
                 product.setPrice(rs.getDouble(t++));
+                product.setCategory(new CategoryDaoImpl().findCategoryById(rs.getInt(t++)));
                 
-                
-               
             }
             this.disconnect();
         } catch (Exception e) {
@@ -53,17 +52,29 @@ public class ProductDaoImpl extends ConnectionSQL implements IProductDao {
         return product;
     }
 
-    @Override
+      @Override
     public int save(Product product) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int result = 0;
+        try {
+            this.connect();
+            String query = "INSERT INTO `products` (`id_product`, `name`, `description`, `categories_products_id_categories_products`, `price`) VALUES (NULL, ?, ?, ?, ?)";
+            PreparedStatement pstm = this.getJdbcConnection().prepareStatement(query);
+           
+            pstm.setString(1, product.getName());
+            pstm.setString(2, product.getDescription());
+            pstm.setInt(3, product.getCategory().getId());
+            pstm.setDouble(4,product.getPrice());
+           
+            result = pstm.executeUpdate();
+           
+            this.disconnect();
+        } catch (Exception e) {
+
+        }
+        return result;
     }
 
-    @Override
-    public int update(Product product) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
+   @Override
     public int delete(int id) {
         int result = 0;
         try {
@@ -74,6 +85,28 @@ public class ProductDaoImpl extends ConnectionSQL implements IProductDao {
             result = pstm.executeUpdate();
             this.disconnect();
         } catch (Exception e) {
+        }
+        return result;
+    }
+
+    @Override
+    public int update(Product product) {
+        int result = 0;
+        try {
+            this.connect();
+            String query = "UPDATE `products` SET `name` = ?, `description` = ?, `categories_products_id_categories_products` = ?, `price` = ? WHERE `products`.`id_product` = ?";
+            PreparedStatement pstm = this.getJdbcConnection().prepareStatement(query);
+            
+            pstm.setString(1, product.getName());
+            pstm.setString(2, product.getDescription());
+            pstm.setInt(3, product.getCategory().getId());
+            pstm.setDouble(4,product.getPrice());
+            
+            result = pstm.executeUpdate();
+           
+            this.disconnect();
+        }catch(Exception e){
+            
         }
         return result;
     }

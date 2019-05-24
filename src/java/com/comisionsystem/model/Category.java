@@ -9,7 +9,7 @@ package com.comisionsystem.model;
  *
  * @author alexis
  */
-class Category {
+public class Category {
      private String name;
     private int id;
 
