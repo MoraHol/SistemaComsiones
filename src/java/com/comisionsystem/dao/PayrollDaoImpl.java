@@ -5,8 +5,8 @@
  */
 package com.comisionsystem.dao;
 
-import com.comisionsystem.model.Sale;
-import com.comsionsystem.idao.ISaleDao;
+import com.comisionsystem.model.Payroll;
+import com.comsionsystem.idao.IPayDao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -15,18 +15,18 @@ import java.util.ArrayList;
  *
  * @author David Viuche
  */
-public class SaleDaoImpl extends ConnectionSQL implements ISaleDao {
+public class PayrollDaoImpl extends ConnectionSQL implements IPayDao {
 
     @Override
-    public ArrayList<Sale> findAll() {
-        ArrayList<Sale> list = new ArrayList<>();
+    public ArrayList<Payroll> findAll() {
+        ArrayList<Payroll> list = new ArrayList<>();
         try {
             this.connect();
-            String query = "SELECT * FROM `sales`";
+            String query = "SELECT * FROM `payrolls`";
             PreparedStatement pstm = this.getJdbcConnection().prepareStatement(query);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
-                list.add(this.findSaleById(rs.getInt("id_sales")));
+                list.add(this.findPayrollById(rs.getInt("id_payroll")));
             }
         } catch (Exception e) {
         }
@@ -34,42 +34,42 @@ public class SaleDaoImpl extends ConnectionSQL implements ISaleDao {
     }
 
     @Override
-    public Sale findSaleById(int id) {
-        Sale sale = new Sale();
+    public Payroll findPayrollById(int id) {
+        Payroll payroll = new Payroll();
         try {
             this.connect();
-            String query = "SELECT * FROM `sales` WHERE id_sales = ?";
+            String query = "SELECT * FROM `payrolls` WHERE id_payroll = ?";
             PreparedStatement pstm = this.getJdbcConnection().prepareStatement(query);
             pstm.setInt(1, id);
             ResultSet rs = pstm.executeQuery();
             if (rs.next()) {
                 int t = 1;
-                sale.setId(rs.getInt(t++));
-                sale.setEmployee(new EmployeeDaoImpl().findById(rs.getInt(t++)));
-                sale.setClient(new ClientDaoImpl().findClientById(rs.getInt(t++)));
-                sale.setProduct(new ProductDaoImpl().findProductById(rs.getInt(t++)));
-                sale.setQuantity(rs.getInt(t++));
-                sale.setCreateAt(rs.getDate(t++));                
+                payroll.setId_payroll(rs.getInt(t++));
+                payroll.setAmount(rs.getInt(t++));
+                payroll.setComision(rs.getInt(t++));
+                payroll.setMonth(rs.getString(t++));
+                payroll.setYear(rs.getString(t++));
+                payroll.setEmployee(new EmployeeDaoImpl().findById(rs.getInt(t++)));
             }
             this.disconnect();
         } catch (Exception e) {
         }
-        return sale;
+        return payroll;
     }
 
     @Override
-    public int save(Sale sale) {
+    public int save(Payroll payroll) {
         int result = 0;
         try {
             this.connect();
-            String query = "INSERT INTO `sales` (`id_sales`, `employees_id_employee`, `products_id_product`, `clients_id_clients`, `quantity`, `create_at`) VALUES (NULL, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO `payrolls` (`id_payroll`, `amount`, `comision`, `month`, `year`, `employees_id_employee`) VALUES (NULL, ?, ?, ?, ?, ?)";
             PreparedStatement pstm = this.getJdbcConnection().prepareStatement(query);
-            pstm.setInt(1, sale.getEmployee().getId());
-            pstm.setInt(2, sale.getProduct().getId());
-            pstm.setInt(3, sale.getClient().getId());
-            pstm.setInt(4, sale.getQuantity());
-            pstm.setDate(5, sale.getCreateAt());
-            
+            pstm.setInt(1, payroll.getId_payroll());
+            pstm.setInt(2, payroll.getAmount());
+            pstm.setInt(3, payroll.getComision());
+            pstm.setString(4, payroll.getMonth());
+            pstm.setString(5, payroll.getYear());
+            pstm.setInt(6, payroll.getEmployee().getId());
             result = pstm.executeUpdate();
            
             this.disconnect();
@@ -84,7 +84,7 @@ public class SaleDaoImpl extends ConnectionSQL implements ISaleDao {
         int result = 0;
         try {
             this.connect();
-            String query = "DELETE FROM `sales` WHERE `sales`.`id_sales` = ?";
+            String query = "DELETE FROM `payrolls` WHERE `payrolls`.`id_payroll` = ?";
             PreparedStatement pstm = this.getJdbcConnection().prepareStatement(query);
             pstm.setInt(1, id);
             result = pstm.executeUpdate();
@@ -95,17 +95,18 @@ public class SaleDaoImpl extends ConnectionSQL implements ISaleDao {
     }
 
     @Override
-    public int update(Sale sale) {
+    public int update(Payroll payroll) {
         int result = 0;
         try {
             this.connect();
-            String query = "UPDATE `sales` SET `employees_id_employee` = ?, `products_id_product` = ?, `clients_id_clients` = ?, `quantity` = ?, `create_at` = ? WHERE `sales`.`id_sales` = ?";
+            String query = "UPDATE `payrolls` SET `amount` = ?, `comision` = ?, `month` = ?, `year` = ?, `employees_id_employee` = ? WHERE `payrolls`.`id_payroll` = ?";
             PreparedStatement pstm = this.getJdbcConnection().prepareStatement(query);
-            pstm.setInt(1, sale.getEmployee().getId());
-            pstm.setInt(2, sale.getProduct().getId());
-            pstm.setInt(3, sale.getClient().getId());
-            pstm.setInt(4, sale.getQuantity());
-            pstm.setDate(5, sale.getCreateAt());
+            pstm.setInt(1, payroll.getId_payroll());
+            pstm.setInt(2, payroll.getAmount());
+            pstm.setInt(3, payroll.getComision());
+            pstm.setString(4, payroll.getMonth());
+            pstm.setString(5, payroll.getYear());
+            pstm.setInt(6, payroll.getEmployee().getId());
             result = pstm.executeUpdate();
             
             this.disconnect();
