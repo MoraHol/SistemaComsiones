@@ -15,6 +15,7 @@ public class Event {
     private int id;
     private Date date;
     private String description;
+    private Client client;
 
     public int getId() {
         return id;
@@ -39,6 +40,15 @@ public class Event {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+    
     
     
 }
