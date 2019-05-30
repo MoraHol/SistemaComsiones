@@ -24,7 +24,7 @@ public class EventDaoImpl extends ConnectionSQL implements IEventDao{
     private IClientDao clientDao  = new ClientDaoImpl();
     
     /**
-     * Function to bring all employees
+     * Function to bring all events
      * @return List of all events
      */
     public ArrayList<Event> findAll() {
@@ -81,7 +81,7 @@ public class EventDaoImpl extends ConnectionSQL implements IEventDao{
         int status = 0;
         try {
             this.connect();
-            String query = "DELETE FROM `events` WHERE `id_event = ?";
+            String query = "DELETE FROM `events` WHERE `id_event` = ?";
             PreparedStatement pstm = this.getJdbcConnection().prepareStatement(query);
             pstm.setInt(1, id);
             status = pstm.executeUpdate();
