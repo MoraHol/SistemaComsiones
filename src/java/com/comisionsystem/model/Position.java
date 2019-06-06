@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Position {
     private int id;
     private String name;
-    private ArrayList<function> functions;
+    private ArrayList<Function> functions;
 
     public int getId() {
         return id;
@@ -32,11 +32,11 @@ public class Position {
         this.name = name;
     }
 
-    public ArrayList<function> getFunctions() {
+    public ArrayList<Function> getFunctions() {
         return functions;
     }
 
-    public void setFunctions(ArrayList<function> functions) {
+    public void setFunctions(ArrayList<Function> functions) {
         this.functions = functions;
     }
 

@@ -9,7 +9,7 @@ package com.comisionsystem.model;
  *
  * @author Alexis Holguin github:MoraHol
  */
-public class function {
+public class Function {
     private int id;
     private String name;
     private String description;
