@@ -7,6 +7,9 @@ package com.comisionsystem.dao;
 
 
 import com.mysql.jdbc.Connection;
+
+import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -25,7 +28,11 @@ public class ConnectionSQL {
 
 	public ConnectionSQL() {
 		this.jdbcURL = "jdbc:mysql://localhost:3306/";
+
 		this.jdbcDataBase = "comisions";
+
+		this.jdbcDataBase = "comsions";
+
 		this.jdbcUsername = "root";
 		this.jdbcPassword = "";
 	}
