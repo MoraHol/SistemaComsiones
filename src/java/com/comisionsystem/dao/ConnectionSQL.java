@@ -26,8 +26,6 @@ public class ConnectionSQL {
 	public ConnectionSQL() {
 		this.jdbcURL = "jdbc:mysql://localhost:3306/";
 
-		this.jdbcDataBase = "comisions";
-
 		this.jdbcDataBase = "comsions";
 
 		this.jdbcUsername = "root";

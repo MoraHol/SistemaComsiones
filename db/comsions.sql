@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 06-06-2019 a las 19:56:43
+-- Tiempo de generación: 06-06-2019 a las 21:59:28
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.2.12
 
@@ -35,7 +35,16 @@ CREATE TABLE IF NOT EXISTS `categories_products` (
   `id_categories_products` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id_categories_products`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `categories_products`
+--
+
+INSERT INTO `categories_products` (`id_categories_products`, `name`) VALUES
+(1, 'Categoria A'),
+(2, 'Categoria B'),
+(3, 'Categoria C');
 
 -- --------------------------------------------------------
 
@@ -46,11 +55,11 @@ CREATE TABLE IF NOT EXISTS `categories_products` (
 DROP TABLE IF EXISTS `cellphone_numbers`;
 CREATE TABLE IF NOT EXISTS `cellphone_numbers` (
   `id_cellphone_number` int(11) NOT NULL AUTO_INCREMENT,
-  `cell_phone_number` bigint(10) NOT NULL,
+  `cell_phone_number` bigint(20) NOT NULL,
   `clients_id_clients` int(11) NOT NULL,
   PRIMARY KEY (`id_cellphone_number`,`clients_id_clients`),
   KEY `fk_emails_clients1_idx` (`clients_id_clients`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `cellphone_numbers`
@@ -58,7 +67,10 @@ CREATE TABLE IF NOT EXISTS `cellphone_numbers` (
 
 INSERT INTO `cellphone_numbers` (`id_cellphone_number`, `cell_phone_number`, `clients_id_clients`) VALUES
 (1, 3222724734, 1),
-(2, 2323454, 1);
+(2, 2323454, 1),
+(4, 1243565, 16),
+(5, 1243565, 17),
+(6, 12435446, 18);
 
 -- --------------------------------------------------------
 
@@ -78,14 +90,31 @@ CREATE TABLE IF NOT EXISTS `clients` (
   `address_personal` varchar(255) NOT NULL,
   `address_company` varchar(255) NOT NULL,
   PRIMARY KEY (`id_clients`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `clients`
 --
 
 INSERT INTO `clients` (`id_clients`, `nit`, `name_company`, `first_name`, `second_name`, `fisrt_surname`, `second_surname`, `address_personal`, `address_company`) VALUES
-(1, '121123123', 'helados popsy', 'alexis', NULL, 'holguin', NULL, 'diagonal 2b #82-30', 'carrera 80b #75-47');
+(1, '121123123', 'helados popsy', 'alexis', NULL, 'holguin', NULL, 'diagonal 2b #82-30', 'carrera 80b #75-47'),
+(2, '21312313', 'adsafas', 'dasd', '', 'asdasd', 'asdasd', 'sadassad', 'sadasd'),
+(3, 'asdas', 'asd', 'asd', '', 'asd', '', 'asdasd', 'asd'),
+(4, 'asdas', 'asd', 'asd', '', 'asd', '', 'asdasd', 'asd'),
+(5, 'asdasd', 'asdasd', 'sadas', '', 'dasdasd', '', 'asdsadasds', 'adasdasd'),
+(6, 'asdasd', 'asdasd', 'sadas', '', 'dasdasd', '', 'asdsadasds', 'adasdasd'),
+(7, 'asdasdasd', 'asdasd', 'asdasds', '', 'dasdasdasa', '', 'sdasdasdas', 'dasdasd'),
+(8, 'asdasdasd', '213231', 'asdasd', '', '123123123', '', '3123123132', '21312321312'),
+(9, 'asdasdasd', '213231', 'asdasd', '', '123123123', '', '3123123132', '21312321312'),
+(10, 'asasa', 'sdsa', 'asasa', '', 'sasa', '', 'asas', 'asasa'),
+(11, 'asasa', 'sdsa', 'asasa', '', 'sasa', '', 'asas', 'asasa'),
+(12, 'sadasdasd', 'sadasdasd', 'sadasd', '', 'asdasds', '', 'sdasdasd', 'asdasd'),
+(13, 'asdasd', 'sad', 'sad', '', 'asd', '', 'sadasda', 'asd'),
+(14, 'asdasd', 'sad', 'sad', '', 'asd', '', 'sadasda', 'asd'),
+(15, 'asasasa', 'sas', 'asa', '', 'sasasa', '', 'sas', 'asasas'),
+(16, 'asdasd', 'asd', 'sadasd', '', 'asdasd', '', 'sadasdsaas', ''),
+(17, 'asdasd', 'asd', 'sadasd', '', 'asdasd', '', 'sadasdsaas', ''),
+(18, 'asdasd', 'asdasd', 'asd', '', 'asdasdas', '', 'dasd', 'asdsadasdasd');
 
 -- --------------------------------------------------------
 
@@ -99,8 +128,8 @@ CREATE TABLE IF NOT EXISTS `emails` (
   `email` varchar(255) NOT NULL,
   `clients_id_clients` int(11) NOT NULL,
   PRIMARY KEY (`id_email`,`clients_id_clients`),
-  KEY `fk_emails_clients1_idx` (`clients_id_clients`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  KEY `fk_emails_clients1` (`clients_id_clients`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `emails`
@@ -108,7 +137,15 @@ CREATE TABLE IF NOT EXISTS `emails` (
 
 INSERT INTO `emails` (`id_email`, `email`, `clients_id_clients`) VALUES
 (1, 'holguinalexis30@gmail.com', 1),
-(2, 'holguinalexis30@gmail.com', 1);
+(2, 'holguinalexis30@gmail.com', 1),
+(8, 'asasas', 15),
+(9, 'as@asdnas', 16),
+(10, 'holguinalexis30@gmail.com', 16),
+(11, 'as@asdnas', 17),
+(12, 'holguinalexis30@gmail.com', 17),
+(13, 'as@asdnas', 17),
+(14, 'holguinalexis30@gmail.com', 17),
+(15, 'asasasas', 18);
 
 -- --------------------------------------------------------
 
@@ -132,7 +169,14 @@ CREATE TABLE IF NOT EXISTS `employees` (
   `update_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_employee`,`positions_id_positions`),
   KEY `fk_employees_positions1_idx` (`positions_id_positions`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `employees`
+--
+
+INSERT INTO `employees` (`id_employee`, `personal_id`, `first_name`, `second_name`, `fisrt_surname`, `second_surname`, `positions_id_positions`, `ext`, `dependency`, `password`, `created_at`, `update_at`) VALUES
+(1, '1002262656', 'William', 'Alexis', 'Holguin', 'Mora', 1, '112', 'aaa', '895D196A3EC8B67FF75FB6BD278BCEF9C992838F0E67FD999460721800988918', '2019-06-06 18:07:31', '2019-06-06 18:07:31');
 
 -- --------------------------------------------------------
 
@@ -191,11 +235,11 @@ CREATE TABLE IF NOT EXISTS `payrolls` (
 DROP TABLE IF EXISTS `phone_numbers`;
 CREATE TABLE IF NOT EXISTS `phone_numbers` (
   `id_phone_number` int(11) NOT NULL AUTO_INCREMENT,
-  `phone_number` bigint(10) NOT NULL,
+  `phone_number` bigint(20) NOT NULL,
   `clients_id_clients` int(11) NOT NULL,
   PRIMARY KEY (`id_phone_number`,`clients_id_clients`),
   KEY `fk_emails_clients1_idx` (`clients_id_clients`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `phone_numbers`
@@ -203,7 +247,8 @@ CREATE TABLE IF NOT EXISTS `phone_numbers` (
 
 INSERT INTO `phone_numbers` (`id_phone_number`, `phone_number`, `clients_id_clients`) VALUES
 (1, 124323645, 1),
-(2, 2143567, 1);
+(2, 2143567, 1),
+(3, 2133446, 18);
 
 -- --------------------------------------------------------
 
@@ -216,7 +261,16 @@ CREATE TABLE IF NOT EXISTS `positions` (
   `id_positions` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id_positions`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `positions`
+--
+
+INSERT INTO `positions` (`id_positions`, `name`) VALUES
+(1, 'Vendedor'),
+(2, 'Coordinador Ventas'),
+(3, 'Analista Financiero');
 
 -- --------------------------------------------------------
 
@@ -299,7 +353,7 @@ ALTER TABLE `cellphone_numbers`
 -- Filtros para la tabla `emails`
 --
 ALTER TABLE `emails`
-  ADD CONSTRAINT `fk_emails_clients1` FOREIGN KEY (`clients_id_clients`) REFERENCES `clients` (`id_clients`) ON DELETE CASCADE ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_emails_clients1` FOREIGN KEY (`clients_id_clients`) REFERENCES `clients` (`id_clients`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `employees`

@@ -1,0 +1,127 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+    <ui:define name="title">Index</ui:define>
+    <ui:define name="content">
+        <div class="card">
+            <h:form id="create_offer">
+                <p:panel header="Registro de cliente">
+                    <p:growl id="growl" showDetail="true" for="messagesApp"></p:growl>
+                    <div class="container">
+                        <div class="ui-g">
+                            <div class="ui-g-2">
+                                Nit: *
+                            </div>
+                            <div class="ui-g-10"><p:inputText value="${clientBean.client.nit}" style="width: 98%" required="true" requiredMessage="Ingresa un titulo para la vacante"></p:inputText></div>
+                        </div>
+                        <div class="ui-g">
+                            <div class="ui-g-2">
+                                nombre de la compañia: *
+                            </div>
+                            <div class="ui-g-10"><p:inputText value="${clientBean.client.nameCompany}" style="width: 98%" required="true" requiredMessage="Ingresa un titulo para la vacante"></p:inputText></div>
+                        </div>
+                        <div class="ui-g">
+                            <div class="ui-g-2">
+                                primer nombre: *
+                            </div>
+                            <div class="ui-g-10"><p:inputText value="${clientBean.client.firstName}" style="width: 98%" required="true" requiredMessage="Ingresa un titulo para la vacante"></p:inputText></div>
+                        </div>
+                        <div class="ui-g">
+                            <div class="ui-g-2">
+                                segundo nombre:
+                            </div>
+                            <div class="ui-g-10"><p:inputText value="${clientBean.client.secondName}" style="width: 98%"></p:inputText></div>
+                        </div>
+                        <div class="ui-g">
+                            <div class="ui-g-2">
+                                primer apellido: *
+                            </div>
+                            <div class="ui-g-10"><p:inputText value="${clientBean.client.firstSurName}" style="width: 98%" required="true" requiredMessage="Ingresa un titulo para la vacante"></p:inputText></div>
+                        </div>
+                        <div class="ui-g">
+                            <div class="ui-g-2">
+                                segundo apellido:
+                            </div>
+                            <div class="ui-g-10"><p:inputText value="${clientBean.client.secondSurName}" style="width: 98%" ></p:inputText></div>
+                        </div>
+                        <div class="ui-g">
+                            <div class="ui-g-2">
+                                Dirección personal: *
+                            </div>
+                            <div class="ui-g-10"><p:inputText value="${clientBean.client.adressPersonal}" style="width: 98%" required="true" requiredMessage="Ingresa un titulo para la vacante"></p:inputText></div>
+                        </div>
+                        <div class="ui-g">
+                            <div class="ui-g-2">
+                                Dirección de la empresa: *
+                            </div>
+                            <div class="ui-g-10"><p:inputText value="${clientBean.client.addressCompany}" style="width: 98%" requiredMessage="Ingresa un titulo para la vacante"></p:inputText></div>
+                        </div>
+                        <div class="ui-g">
+                            <div class="ui-g-2">
+                                Primer telefono: *
+                            </div>
+                            <div class="ui-g-10"><p:inputNumber value="${clientBean.phoneNumber1}" style="width: 98%" requiredMessage="Ingresa un titulo para la vacante"  decimalPlaces="0"></p:inputNumber></div>
+                        </div>
+                        <div class="ui-g">
+                            <div class="ui-g-2">
+                                segundo telefono: 
+                            </div>
+                            <div class="ui-g-10"><p:inputNumber value="${clientBean.phoneNumber2}" style="width: 98%" decimalPlaces="0" requiredMessage="Ingresa un titulo para la vacante"></p:inputNumber></div>
+                        </div>
+                        <div class="ui-g">
+                            <div class="ui-g-2">
+                                tercer telefono: 
+                            </div>
+                            <div class="ui-g-10"><p:inputNumber value="${clientBean.phoneNumber3}" style="width: 98%" decimalPlaces="0" requiredMessage="Ingresa un titulo para la vacante"></p:inputNumber></div>
+                        </div>
+                        <div class="ui-g">
+                            <div class="ui-g-2">
+                                primer celular: *
+                            </div>
+                            <div class="ui-g-10"><p:inputNumber value="${clientBean.cellPhoneNumber1}" style="width: 98%" decimalPlaces="0" required="true" requiredMessage="Ingresa un titulo para la vacante"></p:inputNumber></div>
+                        </div>
+                        <div class="ui-g">
+                            <div class="ui-g-2">
+                                segundo celular: 
+                            </div>
+                            <div class="ui-g-10"><p:inputNumber value="${clientBean.cellPhoneNumber2}" style="width: 98%" decimalPlaces="0" requiredMessage="Ingresa un titulo para la vacante"></p:inputNumber></div>
+                        </div>
+                        <div class="ui-g">
+                            <div class="ui-g-2">
+                                tercer celular: 
+                            </div>
+                            <div class="ui-g-10"><p:inputNumber value="${clientBean.cellPhoneNumber3}" style="width: 98%" decimalPlaces="0" requiredMessage="Ingresa un titulo para la vacante"></p:inputNumber></div>
+                        </div>
+                        <div class="ui-g">
+                            <div class="ui-g-2">
+                                primer Correo: *
+                            </div>
+                            <div class="ui-g-10"><p:inputText value="${clientBean.email1}" style="width: 98%" required="true" requiredMessage="Ingresa un titulo para la vacante"></p:inputText></div>
+                        </div>
+                        <div class="ui-g">
+                            <div class="ui-g-2">
+                                segundo Correo: 
+                            </div>
+                            <div class="ui-g-10"><p:inputText value="${clientBean.email2}" style="width: 98%"  requiredMessage="Ingresa un titulo para la vacante"></p:inputText></div>
+                        </div>
+                        <div class="ui-g">
+                            <div class="ui-g-2">
+                                tercer Correo: 
+                            </div>
+                            <div class="ui-g-10"><p:inputText value="${clientBean.email3}" style="width: 98%" requiredMessage="Ingresa un titulo para la vacante"></p:inputText></div>
+                        </div>
+                        <div class="ui-g">
+                            <div class="ui-g-5"></div>
+                            <div class="ui-g-5">
+                                <p:commandButton value="Registrar cliente" action="${clientBean.register()}" id="save-offer"  update="@form,growl"  icon="fa fa-save" />
+                            </div>
+                        </div>
+                    </div>
+                </p:panel>
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>

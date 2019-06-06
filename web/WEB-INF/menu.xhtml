@@ -11,11 +11,10 @@
             <div class="nano">
                 <div class="nano-content menu-scroll-content">
                     <pp:menu widgetVar="me">
-                        <p:menuitem id="om_dashboard" value="Dashboard" icon="fa fa-fw fa-home" outcome="/login"/>
-                        <p:submenu id="om_clients" label="CLientes" icon="fa fa-fw fa-bars">
-                            <p:menuitem id="om_clientslist" value="listar Clientes" icon="fa fa-fw fa-home" outcome="/pages/Clients"/>
-
-
+                        <p:menuitem id="om_dashboard" value="Dashboard" icon="fa fa-fw fa-home" outcome="/pages/employee/dashboard"/>
+                        <p:submenu id="om_clients" label="Clientes" icon="fa fa-fw fa-bars">
+                            <p:menuitem id="om_clientslist" value="listar Clientes" icon="fa fa-fw fa-home" outcome="/pages/employee/clients"/>
+                            <p:menuitem id="om_clientsregister" value="Registrar Clientes" icon="fa fa-fw fa-home" outcome="/pages/employee/registerClient"/>
                         </p:submenu>
                         <p:submenu id="om_customization" label="Menu Modes" icon="fa fa-fw fa-bars">
                             <p:menuitem id="custom3" value="Static Menu" icon="fa fa-fw fa-bars" actionListener="#{guestPreferences.setMenuLayout('static')}" ajax="false"/>

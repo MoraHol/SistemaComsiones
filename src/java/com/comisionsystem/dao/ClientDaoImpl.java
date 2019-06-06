@@ -9,6 +9,7 @@ import com.comisionsystem.model.Client;
 import com.comsionsystem.idao.IClientDao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -46,6 +47,7 @@ public class ClientDaoImpl extends ConnectionSQL implements IClientDao {
                 int t = 1;
                 client.setId(rs.getInt(t++));
                 client.setNit(rs.getString(t++));
+                client.setNameCompany(rs.getString(t++));
                 client.setFirstName(rs.getString(t++));
                 client.setSecondName(rs.getString(t++));
                 client.setFirstSurName(rs.getString(t++));
@@ -86,7 +88,7 @@ public class ClientDaoImpl extends ConnectionSQL implements IClientDao {
         try {
             this.connect();
             String query = "INSERT INTO `clients` (`id_clients`, `nit`, `name_company`, `first_name`, `second_name`, `fisrt_surname`, `second_surname`, `address_personal`, `address_company`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement pstm = this.getJdbcConnection().prepareStatement(query);
+            PreparedStatement pstm = this.getJdbcConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstm.setString(1, client.getNit());
             pstm.setString(2, client.getNameCompany());
             pstm.setString(3, client.getFirstName());
@@ -96,30 +98,47 @@ public class ClientDaoImpl extends ConnectionSQL implements IClientDao {
             pstm.setString(7, client.getAdressPersonal());
             pstm.setString(8, client.getAddressCompany());
             result = pstm.executeUpdate();
+            ResultSet rs = pstm.getGeneratedKeys();
+            if (rs.next()) {
+                Client client1 = this.findClientById(rs.getInt(1));
+                client.setId(client1.getId());
+            }
+            this.connect();
             // guardar los emails
             for (String email : client.getEmails()) {
-                PreparedStatement pstm1 = this.getJdbcConnection().prepareStatement("INSERT INTO `emails` (`id_email`, `email`, `clients_id_clients`) VALUES (NULL, ?, ?)");
-                pstm1.setString(1, email);
-                pstm1.setInt(2, client.getId());
-                result = pstm.executeUpdate();
+                if (!email.isEmpty()) {
+                    PreparedStatement pstm1 = this.getJdbcConnection().prepareStatement("INSERT INTO `emails` (`id_email`, `email`, `clients_id_clients`) VALUES (NULL, ?, ?)");
+                    pstm1.setString(1, email);
+                    pstm1.setInt(2, client.getId());
+                    result = pstm1.executeUpdate();
+                }
+
             }
             // guardar numeros de celular
             for (String cellPhoneNumber : client.getCellPhoneNumbers()) {
-                PreparedStatement pstm2 = this.getJdbcConnection().prepareStatement("INSERT INTO `cellphone_numbers` (`id_cellphone_number`, `cell_phone_number`, `clients_id_clients`) VALUES (NULL, ?, ?);");
-                pstm2.setString(1, cellPhoneNumber);
-                pstm2.setInt(2, client.getId());
-                result = pstm2.executeUpdate();
+                if (cellPhoneNumber != null) {
+                    if (!cellPhoneNumber.isEmpty()) {
+                        PreparedStatement pstm2 = this.getJdbcConnection().prepareStatement("INSERT INTO `cellphone_numbers` (`id_cellphone_number`, `cell_phone_number`, `clients_id_clients`) VALUES (NULL, ?, ?);");
+                        pstm2.setString(1, cellPhoneNumber);
+                        pstm2.setInt(2, client.getId());
+                        result = pstm2.executeUpdate();
+                    }
+                }
             }
             // guardar telefonos de cliente
             for (String phoneNumber : client.getPhoneNumbers()) {
-                PreparedStatement pstm3 = this.getJdbcConnection().prepareStatement("INSERT INTO `phone_numbers` (`id_phone_number`, `phone_number`, `clients_id_clients`) VALUES (NULL, ?, ?)");
-                pstm3.setString(1, phoneNumber);
-                pstm3.setInt(2, client.getId());
-                result = pstm3.executeUpdate();
+                if (phoneNumber != null) {
+                    if (!phoneNumber.isEmpty()) {
+                        PreparedStatement pstm3 = this.getJdbcConnection().prepareStatement("INSERT INTO `phone_numbers` (`id_phone_number`, `phone_number`, `clients_id_clients`) VALUES (NULL, ?, ?)");
+                        pstm3.setString(1, phoneNumber);
+                        pstm3.setInt(2, client.getId());
+                        result = pstm3.executeUpdate();
+                    }
+                }
             }
             this.disconnect();
         } catch (Exception e) {
-
+            System.out.println("Eror ClietnDao: " + e.getMessage());
         }
         return result;
     }
@@ -178,8 +197,8 @@ public class ClientDaoImpl extends ConnectionSQL implements IClientDao {
                 result = pstm3.executeUpdate();
             }
             this.disconnect();
-        }catch(Exception e){
-            
+        } catch (Exception e) {
+
         }
         return result;
     }

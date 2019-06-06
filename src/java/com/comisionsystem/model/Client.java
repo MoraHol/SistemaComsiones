@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author Alexis Holguin github:MoraHol
  */
 public class Client {
+
     private int id;
     private String nit;
     private String nameCompany;
@@ -25,6 +26,13 @@ public class Client {
     private ArrayList<String> phoneNumbers;
     private ArrayList<String> cellPhoneNumbers;
     private ArrayList<Event> events;
+
+    public Client() {
+        emails = new ArrayList<>();
+        phoneNumbers = new ArrayList<>();
+        cellPhoneNumbers = new ArrayList<>();
+        events = new ArrayList<>();
+    }
 
     public int getId() {
         return id;
@@ -82,8 +90,6 @@ public class Client {
         this.secondSurName = secondSurName;
     }
 
-    
-
     public String getAdressPersonal() {
         return adressPersonal;
     }
@@ -131,6 +137,5 @@ public class Client {
     public void setEvents(ArrayList<Event> events) {
         this.events = events;
     }
-    
-    
+
 }

@@ -49,6 +49,8 @@ public class EmployeeService {
     public Employee authenticateEmployee(String personalId, String password) {
         try {
             employee = consultByPersonalId(personalId);
+            System.out.println(convertSHA256(password));
+            System.out.println(employee.getPassword());
             if (employee != null) {
                 if (employee.getPassword().equals(convertSHA256(password))) {
                     return employee;
@@ -59,7 +61,7 @@ public class EmployeeService {
                 throw new Exception("El Correo no se encuentra registrado");
             }
         } catch (Exception ex) {
-            Logger.getLogger(EmployeeService.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("EmployeeService: " + ex.getMessage());
         }
         return null;
     }
@@ -79,6 +81,6 @@ public class EmployeeService {
             sb.append(String.format("%02x", b));
         }
 
-        return sb.toString();
+        return sb.toString().toUpperCase();
     }
 }
