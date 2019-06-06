@@ -20,5 +20,5 @@ public interface IEmployeeDao {
     public int update(Employee employee);
     public Employee findById(int id);
     public Position findPositionById(int idEmployee);
-
+    public Employee findByPersonalId(String personalId);
 }

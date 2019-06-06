@@ -18,4 +18,5 @@ public interface IEmployeeDao {
     public int delete(int id);
     public Employee findEmployee(int id);
     public ArrayList<Employee> findAll();
+    public Employee findByPersonalId(String personalId);
 }

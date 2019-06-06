@@ -21,9 +21,18 @@ public class Employee {
     private Position position;
     private String ext;
     private String dependency;
+    private String password;
     private Date createdAt;
     private Date updatedAt;
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
     public int getId() {
         return id;
     }

@@ -4,14 +4,10 @@
 package com.comisionsystem.dao;
 
 import com.comisionsystem.idao.IEmployeeDao;
-import com.comisionsystem.model.Employee;
 import com.comisionsystem.model.Position;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-package com.comisionsystem.dao;
-
 import com.comisionsystem.model.Employee;
-import com.comsionsystem.idao.IEmployeeDao;
 import java.util.ArrayList;
 
 /**
@@ -85,6 +81,7 @@ public class EmployeeDaoImpl extends ConnectionSQL implements IEmployeeDao {
      * @param id The id of the respective employee
      * @return 1 if the employee was deleted, otherwise 0
      */
+    @Override
     public int delete(int id) {
         int status = 0;
         try {
@@ -109,7 +106,7 @@ public class EmployeeDaoImpl extends ConnectionSQL implements IEmployeeDao {
         int status = 0;
         try {
             this.connect();
-            String query = "UPDATE `employee` SET `personal_id` = ?, `first_name` = ?, `second_name` = ?, `fisrt_surname` = ?, `second_surname` = ?, `positions_id_positions` =? , `ext` = ?, `dependency` = ?";
+            String query = "UPDATE `employee` SET `personal_id` = ?, `first_name` = ?, `second_name` = ?, `fisrt_surname` = ?, `second_surname` = ?, `positions_id_positions` =? , `ext` = ?, `dependency` = ?, `password` = ?";
             PreparedStatement pstm = this.getJdbcConnection().prepareStatement(query);
             pstm.setInt(1, employee.getPersonalId());
             pstm.setString(2, employee.getSecondName());
@@ -118,6 +115,7 @@ public class EmployeeDaoImpl extends ConnectionSQL implements IEmployeeDao {
             pstm.setInt(5, employee.getPosition().getId());
             pstm.setString(6, employee.getExt());
             pstm.setString(7, employee.getDependency());
+            pstm.setString(8,employee.getPassword());
             status = pstm.executeUpdate();
             this.disconnect();
         } catch (Exception e) {
@@ -150,6 +148,7 @@ public class EmployeeDaoImpl extends ConnectionSQL implements IEmployeeDao {
                 employee.setPosition(new PositionDaoImpl().findPositionById(t++));
                 employee.setExt(rs.getString(t++));
                 employee.setDependency(rs.getString(t++));
+                employee.setPassword(rs.getString(t++));
                 employee.setCreatedAt(rs.getDate(t++));
                 employee.setUpdatedAt(rs.getDate(t++));
             }
@@ -162,7 +161,7 @@ public class EmployeeDaoImpl extends ConnectionSQL implements IEmployeeDao {
     
     /**
      * Function to find the position an specified employee
-     * @param id 
+     * @param idEmployee
      * @return The position of the employee
      */
     public Position findPositionById(int idEmployee) {
@@ -185,6 +184,24 @@ public class EmployeeDaoImpl extends ConnectionSQL implements IEmployeeDao {
         } catch (Exception e) {
         }
         return positionOfTheEmployee;
+    }
+    
+    public Employee findByPersonalId(String personalId){
+        Employee employee = new Employee();
+        try {
+            this.connect();
+            String query = "SELECT id_employee FROM `employees` WHERE `personal_id` = ?";
+            PreparedStatement pstm = this.getJdbcConnection().prepareStatement(query);
+            pstm.setString(1, personalId);
+            ResultSet rs = pstm.executeQuery();
+            if(rs.next()){
+                employee = this.findById(rs.getInt(1));
+            }
+            this.disconnect();
+        } catch (Exception e) {
+            return null;
+        }
+        return employee;
     }
     
 }

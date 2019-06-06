@@ -65,8 +65,8 @@ public class LoginBean implements Serializable{
     public void doLogin() throws Exception {
         try {
             if (isAuthenticated()) {
-                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", user);
-                FacesContext.getCurrentInstance().getExternalContext().redirect("pages/user/dashboard.xhtml");
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("employee", employee);
+                FacesContext.getCurrentInstance().getExternalContext().redirect("pages/employee/dashboard.xhtml");
             }
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage("messagesApp",
