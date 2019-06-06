@@ -1,12 +1,110 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <meta charset="utf-8"/>
+  <title>INICIO</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="" name="keywords"/>
+  <meta content="" name="description"/>
+
+  <!-- Favicons -->
+  <link href="Index-date/img/favicon.png" rel="icon"/>
+  <link href="Index-date/img/apple-touch-icon.png" rel="apple-touch-icon"/>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet"/>
+
+  <!-- Bootstrap CSS File -->
+  <link href="Index-date/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- Libraries CSS Files -->
+  <link href="Index-date/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+ 
+
+  <!-- Main Stylesheet File -->
+  <link href="Index-date/css/style.css" rel="stylesheet"/>
     </h:head>
     <h:body>
-        Hello from Facelets
+        
+  <!--==========================
+    Header
+  ============================-->
+  <header id="header">
+    <div class="container">
+
+      <div id="logo" class="pull-left">
+        <!-- Uncomment below if you prefer to use a text logo -->
+        <!-- <h1><a href="#main">C<span>o</span>nf</a></h1>-->
+        <a href="#intro" class="scrollto"><h1 class="mb-4 pb-0"><span>Sistema De Comisiones</span></h1></a>
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="#intro">Inicio</a></li>
+          <li><a href="#about">Sobre nosotros</a></li>
+          <li class="buy-tickets"><a href="login.xhtml">Inisio de Sesion</a></li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
+
+  <!--==========================
+    Intro Section
+  ============================-->
+  <section id="intro">
+    <div class="intro-container wow fadeIn">
+      <h1 class="mb-4 pb-0">Gana<br></br><span>Dinero</span> con nosotros</h1>
+      <p class="mb-4 pb-0">Solo debes crear una cuenta e iniciar a ganar.</p>
+      <a href="login.xhtml" class="venobox play-btn mb-4" data-vbtype="video"
+        data-autoplay="true"></a>
+      <a href="#about" class="about-btn scrollto">Sobre Nosotros</a>
+    </div>
+  </section>
+
+  <main id="main">
+
+    <!--==========================
+      About Section
+    ============================-->
+    <section id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <h2>Sobre Nosotros</h2>
+            <p>Te ayudamos a generar ganacias segun tus ventas</p>
+          </div>
+          <div class="col-lg-3">
+            <h3>Donde</h3>
+            <p>Vende por internet</p>
+          </div>
+          <div class="col-lg-3">
+            <h3>Contactanos</h3>
+            <p>+52<br></br>55444824</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+  
+
+  <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+  <!-- JavaScript Libraries -->
+  <script src="Index-date/lib/jquery/jquery.min.js"></script>
+  <script src="Index-date/lib/jquery/jquery-migrate.min.js"></script>
+  <script src="Index-date/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="Index-date/lib/wow/wow.min.js"></script>
+  
+
+  <!-- Template Main Javascript File -->
+  <script src="Index-date/js/main.js"></script>
+  </main>
     </h:body>
 </html>
+
+
 
