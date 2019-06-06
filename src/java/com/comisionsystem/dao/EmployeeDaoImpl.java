@@ -8,6 +8,10 @@ import com.comisionsystem.model.Employee;
 import com.comisionsystem.model.Position;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+package com.comisionsystem.dao;
+
+import com.comisionsystem.model.Employee;
+import com.comsionsystem.idao.IEmployeeDao;
 import java.util.ArrayList;
 
 /**
